@@ -16,7 +16,7 @@ const formatViews = (views) => {
 };
 
 // URL for the thumbnail image
-const thumbnailUrl = 'https://telegra.ph/file/3653d1cd025076c0559d5.jpg';
+const thumbnailUrl = 'https://iili.io/3okmx3B.jpg';
 
 
 
@@ -24,7 +24,7 @@ const thumbnailUrl = 'https://telegra.ph/file/3653d1cd025076c0559d5.jpg';
 
 cmd({
     pattern: "yts",
-    alias: ["yta","ytv","yt"],
+    alias: ["ytsearch"],
     desc: "Search and display up to 100 YouTube video details",
     category: "search",
     filename: __filename
@@ -34,11 +34,11 @@ async (conn, mek, m, { from, q, reply }) => {
         if (!q) return reply("Please type a Name or Url... 🤖");
 
         const search = await yts(q);
-        const videos = search.videos.slice(0, 5); // Get only the first 100 videos
+        const videos = search.videos.slice(0, 10); // Get only the first 10 videos
 
         if (videos.length === 0) return reply("No videos found for your query.");
 
-        let message = `👹️ *_Chuti_Yakshani-Md_* 👹️ *YT Search 🎥*\n\n`;
+        let message = `*_Yasuki-Md_* *YT Search 🎥*\n\n`;
 
         videos.forEach((data, index) => {
             message += `*No - ${index + 1} ⤵*\n\n`;
@@ -48,13 +48,13 @@ async (conn, mek, m, { from, q, reply }) => {
             message += `⏳ *𝗧𝗶𝗺𝗲*: _${data.timestamp}_\n\n`;
             message += `⏱️ *𝗔𝗴𝗼*: _${data.ago}_\n\n`;
             message += `👁️‍🗨️ *𝗩𝗶𝗲𝘄𝘀*: _${formatViews(data.views)}_\n\n`;
-            message += `🔗 *𝗟𝗶𝗻𝗸*: ${data.url}\n\n`;
+            message += `🔗 *𝗟𝗶𝗻𝗸*: ${data.url}\n\n\n`;
         });
-        message += `👹️ *_Chuti_Yakshani-Md Yt DL_* 👹️\n\n`;
+        message += `*_Yasuki-Md Yt Downloader_* \n\n`;
         message += `*𝗛𝗼𝘄 𝗧𝗼 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗩𝗶𝗱𝗲𝗼 𝗢𝗿 𝗔𝘂𝗱𝗶𝗼 ✅*\n\n`;
         message += `Example -  .video (enter video title)\n`;
         message += `Example - .song (enter video title)\n\n`;
-        message += `♻️ *~Powered by Chuti_Yakshani-MD~* ♻️`;
+        message += `♻️ *~Powered by Yasuki-MD~* ♻️`;
 
         // Send the video details with the image
         await conn.sendMessage(from, { image: { url: thumbnailUrl }, caption: message }, { quoted: mek });
